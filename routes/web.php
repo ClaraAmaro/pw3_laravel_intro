@@ -9,6 +9,7 @@ Route::get('/', function (){
 });
 
 Route::view('landing', 'landing');
+Route::view('/admin', 'admin.dashboard');
 
 Route::get('/produtos', [ProdutoController::class, 'index']);
 Route::get('/produtos', [ProdutoController::class, 'store']);
