@@ -11,12 +11,14 @@ Route::get('/', function (){
 });
 
 Route::view('landing', 'landing');
+
 Route::view('/admin', 'admin.dashboard');
 
-// Rota para calcular o formulario (GET)
-Route::get('usuarios/novo', [UserController::class, 'create']);
+// Rota da listagem e painel administrativo (GET)
+Route::get('/admin', [UserController::class, 'index']);
 
-// Rota para salvar os dados enviados (POST)
+// Rotas de criação de usuários
+Route::get('/usuarios/novo', [UserController::class, 'create']);
 Route::post('/usuarios', [UserController::class, 'store']);
 
 Route::get('/teste-orm', function(){
