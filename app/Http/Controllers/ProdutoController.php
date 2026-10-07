@@ -7,11 +7,11 @@ use App\Models\Produto;
 
 class ProdutoController extends Controller
 {
-    //
     public function index()
     {
         $produtos = Produto::orderBy('nome')->get();
-        return view ('produtos.index', compact('produtos'));
+
+        return view('produtos.index', compact('produtos'));
     }
 
     public function store(Request $request)

@@ -8,7 +8,9 @@
             <h2 class="text-3xl font-bold text-slate-900">Painel Administrativo</h2>
             <p class="text-slate-600">Resumo rápido do sistema para tomada de decisão.</p>
         </div>
-        <a href="#" class="rounded-lg bg-slate-900 px-4 py-2 font-medium text-white hover:bg-slate-700">
+
+        <a href="/usuarios/novo"
+            class="rounded-lg bg-slate-900 px-4 py-2 font-medium text-white hover:bg-slate-700">
             Novo registro
         </a>
     </section>
@@ -18,10 +20,12 @@
             <p class="text-sm text-slate-500">Projetos ativos</p>
             <p class="mt-2 text-3xl font-bold text-slate-900">12</p>
         </article>
+
         <article class="rounded-xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
             <p class="text-sm text-slate-500">Usuários cadastrados</p>
-            <p class="mt-2 text-3xl font-bold text-slate-900">84</p>
+            <p class="mt-2 text-3xl font-bold text-slate-900">{{ $usuarios->count() }}</p>
         </article>
+
         <article class="rounded-xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
             <p class="text-sm text-slate-500">Pendências</p>
             <p class="mt-2 text-3xl font-bold text-amber-600">5</p>
@@ -29,63 +33,45 @@
     </section>
 
     <section class="mt-8 rounded-xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-        <h3 class="text-xl font-semibold text-slate-900">Registros recentes</h3>
+        <h3 class="text-xl font-semibold text-slate-900">Usuários cadastrados</h3>
 
         <div class="mt-4 overflow-x-auto">
             <table class="min-w-full border-collapse text-left">
                 <thead>
                     <tr class="border-b border-slate-200 text-sm text-slate-500">
-                        <th class="py-3">Item</th>
-                        <th class="py-3">Responsável</th>
-                        <th class="py-3">Status</th>
+                        <th class="py-3">Nome</th>
+                        <th class="py-3">E-mail</th>
+                        <th class="py-3">Data de Cadastro</th>
+                        <th class="py-3">Ações</th>
                     </tr>
                 </thead>
+
                 <tbody class="text-sm text-slate-700">
-                    <tr class="border-b border-slate-100">
-                        <td class="py-3">Módulo de relatórios</td>
-                        <td class="py-3">Equipe A</td>
-                        <td class="py-3"><span
-                                class="rounded-full bg-emerald-100 px-3 py-1 text-emerald-700">Concluído</span></td>
-                    </tr>
-                    <tr class="border-b border-slate-100">
-                        <td class="py-3">Cadastro de usuários</td>
-                        <td class="py-3">Equipe B</td>
-                        <td class="py-3"><span class="rounded-full bg-amber-100 px-3 py-1 text-amber-700">Em
-                                andamento</span></td>
-                    </tr>
-                    <tr>
-                        <td class="py-3">Integração API externa</td>
-                        <td class="py-3">Equipe C</td>
-                        <td class="py-3"><span class="rounded-full bg-rose-100 px-3 py-1 text-rose-700">Atrasado</span>
-                        </td>
-                    </tr>
-
-                    {{-- Versão anterior: Registros estáticos fixos no HTML --}}
-                    <tr>
-                        <td class="py-3 font-medium text-slate-900">Carlos Silva</td>
-                        <td class="py-3 text-slate-600">carlos@escola.sp.gov.br</td>
-                        <td class="py-3"><span class="rounded-full bg-emerald-100 px-3 py-1 text-emerald-700">Ativo</span>
-                        </td>
-                    </tr>
-
-                    @php
-                        $users = App\Models\User::all();
-                    @endphp
-
-                    {{-- Próximas aulas: Registros dinâmicos com Blade e Eloquent --}}
-                    @foreach ($users as $user)
+                    @foreach ($usuarios as $usuario)
                         <tr class="border-b border-slate-100">
-                            <td class="py-3 font-medium text-slate-900">{{ $user->name }}</td>
-                            <td class="py-3 text-slate-600">{{ $user->email }}</td>
-                            <td class="py-3 text-slate-500">{{ $user->created_at->format('d/m/Y') }}</td>
+                            <td class="py-3 font-medium text-slate-900">
+                                {{ $usuario->name }}
+                            </td>
+
+                            <td class="py-3 text-slate-600">
+                                {{ $usuario->email }}
+                            </td>
+
+                            <td class="py-3 text-slate-500">
+                                {{ $usuario->created_at->format('d/m/Y') }}
+                            </td>
+
+                            <td class="py-3">
+                                <a href="/usuarios/{{ $usuario->id }}/editar"
+                                    class="text-blue-600 hover:underline">
+                                    Editar
+                                </a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-
-
     </section>
-
-
 @endsection
+

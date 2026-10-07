@@ -5,15 +5,23 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\LivroController;
 use App\Http\Controllers\EventoController;
+use App\Http\Controllers\UserController;
 
-Route::get('/', function (){
+Route::get('/admin', [UserController::class, 'index']);
+
+Route::get('/usuarios/novo', [UserController::class, 'create']);
+Route::post('/usuarios', [UserController::class, 'store']);
+
+Route::get('/usuarios/{id}/editar', [UserController::class, 'edit']);
+Route::put('/usuarios/{id}', [UserController::class, 'update']);
+
+Route::get('/', function () {
     return view('home');
 });
 
 Route::view('landing', 'landing');
-Route::view('/admin', 'admin.dashboard');
 
-Route::get('/teste-orm', function(){
+Route::get('/teste-orm', function () {
     User::create([
         'name' => 'Ana Clara Santos',
         'email' => 'ana.santos@escola.sp.gov.br',
