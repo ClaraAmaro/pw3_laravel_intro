@@ -4,6 +4,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\LivroController;
+use App\Http\Controllers\ProdutoCategoriaController;
 
 Route::get('/', function (){
     return view('home');
@@ -27,3 +28,5 @@ Route::get('/produtos', [ProdutoController::class, 'store']);
 
 Route::get('/livros', [LivroController::class, 'index']);
 Route::post('/livros', [LivroController::class, 'store']);
+
+Route::resources('produtos', ProdutoCategoriaController::class);
