@@ -6,6 +6,7 @@ use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\LivroController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CantinaController;
 
 Route::get('/admin', [UserController::class, 'index']);
 
@@ -40,3 +41,6 @@ Route::post('/livros', [LivroController::class, 'store']);
 Route::get('/eventos', [EventoController::class, 'index']);
 Route::get('/eventos/novo', [EventoController::class, 'create']);
 Route::post('/eventos', [EventoController::class, 'store']);
+
+// Registra todas as rotas do crud em uma unica linha
+Route::resource('cantinas', CantinaController::class);
